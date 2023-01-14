@@ -1,5 +1,5 @@
-print('Выберите команду')
-print('1. Начать новую игру')
-command = int(input())
-if command != 1:
-    raise Exception("Нет такой команды")
+from src.game.game import Game
+
+game = Game()
+while not game.is_ended:
+    game.show_info()
