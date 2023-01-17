@@ -14,3 +14,7 @@ class Fireball(Incantaion):
 class Heal(Incantaion):
     def cast(self, target):
         target.hp += 5
+
+class SuperHeal(Incantaion):
+    def cast(self, target):
+        target.hp += 50
