@@ -19,5 +19,5 @@ class Entity(ABC):
         self.y_coord = y_coord
 
     def move(self, direction: Direction):
-        if direction == Direction.east
+        pass
 
