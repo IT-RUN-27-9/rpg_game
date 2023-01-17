@@ -1,20 +1,20 @@
 from abc import ABC, abstractmethod
 
 
-class Incantaion(ABC):
+class Incantation(ABC):
     @abstractmethod
     def cast(self, target):
         pass
 
-class Fireball(Incantaion):
+class Fireball(Incantation):
     def cast(self, target):
         target.hp -= 10
 
 
-class Heal(Incantaion):
+class Heal(Incantation):
     def cast(self, target):
         target.hp += 5
 
-class SuperHeal(Incantaion):
+class SuperHeal(Incantation):
     def cast(self, target):
         target.hp += 50
