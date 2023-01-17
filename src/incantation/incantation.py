@@ -11,7 +11,7 @@ class Fireball(Incantation):
         target.hp -= 10
 
 
-class Heall(Incantation):
+class Heafl(Incantation):
     def cast(self, target):
         target.hp += 5
 
