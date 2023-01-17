@@ -20,4 +20,3 @@ class Entity(ABC):
 
     def move(self, direction: Direction):
         pass
-
