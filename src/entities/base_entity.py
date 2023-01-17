@@ -14,9 +14,11 @@ class Direction(Enum):
 
 
 class Entity(ABC):
-    def __init__(self, x_coord, y_coord):
+    def __init__(self, x_coord, y_coord, hp, attack):
         self.x_coord = x_coord
         self.y_coord = y_coord
+        self.hp = hp
+        self.attack = attack
 
     def move(self, direction: Direction):
         pass
