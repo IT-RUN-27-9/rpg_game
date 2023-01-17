@@ -1,5 +1,4 @@
 from base_entity import Entity
-from src.incantation.incantation import Heal, Fireball
 
 
 class Monster(Entity):

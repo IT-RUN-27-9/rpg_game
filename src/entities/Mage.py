@@ -1,5 +1,5 @@
 from src.entities.Monster1 import Monster
-from src.incantation.incantation import Heal
+from src.incantation.heal import Heal
 
 
 class Mage(Monster):

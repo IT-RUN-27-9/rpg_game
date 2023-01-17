@@ -1,5 +1,5 @@
 from src.entities.Mage import Mage
-from src.incantation.incantation import Fireball
+from src.incantation.fireball import Fireball
 
 
 class FireGolem(Mage):

@@ -1,5 +1,6 @@
 from src.entities.Mage import Mage
-from src.incantation.incantation import Fireball, SuperHeal
+from src.incantation.fireball import Fireball
+from src.incantation.superheal import SuperHeal
 
 
 class Player(Mage):
