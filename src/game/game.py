@@ -1,14 +1,19 @@
+from random import randrange
 from src.entities.base_entity import Entity
 
 
 class Player(Entity):
-    pass
+    def __init__(self, x_coord, y_coord):
+        super().__init__(x_coord, y_coord)
+        self.hp = 500
+        self.x_coord = randrange(100)
+        self.y_coord = randrange(100)
 
 class Game:
     def __init__(self):
         self.entites = []
         self.is_ended = False
-        self.player = Player
+        self.player = Player(self)
 
     def get_command(self):
         while True:
