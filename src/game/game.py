@@ -1,7 +1,14 @@
+from src.entities.base_entity import Entity
+
+
+class Player(Entity):
+    pass
+
 class Game:
     def __init__(self):
         self.entites = []
         self.is_ended = False
+        self.player = Player
 
     def get_command(self):
         while True:
