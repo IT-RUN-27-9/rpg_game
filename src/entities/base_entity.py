@@ -20,27 +20,31 @@ class Entity(ABC):
         self.y_coord = y_coord
 
     def move(self, direction: Direction):
-        if self._check():
-            if direction == Direction.east:
-                self.x_coord += 1
-            if direction == Direction.north:
-                self.y_coord += 1
-            if direction == Direction.west:
-                self.x_coord -= 1
-            if direction == Direction.south:
-                self.y_coord -= 1
-            if direction == Direction.north_west:
-                self.x_coord -= 1
-                self.y_coord += 1
-            if direction == Direction.north_east:
-                self.x_coord += 1
-                self.y_coord += 1
-            if direction == Direction.south_east:
-                self.x_coord += 1
-                self.y_coord -= 1
-            if direction == Direction.south_west:
-                self.x_coord -= 1
-                self.y_coord -= 1
+        new_x = None
+        new_y = None
+        if direction == Direction.east:
+            new_x = self.x_coord + 1
+        if direction == Direction.north:
+            new_y = self.y_coord + 1
+        if direction == Direction.west:
+            new_x = self.x_coord - 1
+        if direction == Direction.south:
+            new_y = self.y_coord - 1
+        if direction == Direction.north_west:
+            new_x = self.x_coord - 1
+            new_y = self.y_coord + 1
+        if direction == Direction.north_east:
+            new_x = self.x_coord + 1
+            new_y = self.y_coord + 1
+        if direction == Direction.south_east:
+            new_x = self.x_coord + 1
+            new_y = self.y_coord - 1
+        if direction == Direction.south_west:
+            new_x = self.x_coord - 1
+            new_y = self.y_coord - 1
+        if self._check(new_x, new_y):
+            self.x_coord = new_x
+            self.y_coord = new_y
             return True
         else:
             print('move is invalid')
