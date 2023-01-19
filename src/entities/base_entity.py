@@ -52,7 +52,7 @@ class Entity(ABC):
         return True
 
     def _check_other_objects(self, x_coord, y_coord):
-        for monster in self.game:
+        for monster in self.game.entities:
             if monster.x_coord == x_coord and monster.y_coord == y_coord:
                 return False
             return True
@@ -61,3 +61,4 @@ class Entity(ABC):
         if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
+
