@@ -14,12 +14,13 @@ class Direction(Enum):
 
 
 class Entity(ABC):
-    def __init__(self, x_coord, y_coord):
+    def __init__(self, x_coord, y_coord, game):
+        self.game = game
         self.x_coord = x_coord
         self.y_coord = y_coord
 
-    def move(self, direction: Direction, ):
-        if self._check(x_coord, y_coord):
+    def move(self, direction: Direction):
+        if self._check():
             if direction == Direction.east:
                 self.x_coord += 1
             if direction == Direction.north:
@@ -27,6 +28,18 @@ class Entity(ABC):
             if direction == Direction.west:
                 self.x_coord -= 1
             if direction == Direction.south:
+                self.y_coord -= 1
+            if direction == Direction.north_west:
+                self.x_coord -= 1
+                self.y_coord += 1
+            if direction == Direction.north_east:
+                self.x_coord += 1
+                self.y_coord += 1
+            if direction == Direction.south_east:
+                self.x_coord += 1
+                self.y_coord -= 1
+            if direction == Direction.south_west:
+                self.x_coord -= 1
                 self.y_coord -= 1
             return True
         else:
@@ -39,7 +52,7 @@ class Entity(ABC):
         return True
 
     def _check_other_objects(self, x_coord, y_coord):
-        for monster in monsters:
+        for monster in self.game:
             if monster.x_coord == x_coord and monster.y_coord == y_coord:
                 return False
             return True
@@ -48,12 +61,3 @@ class Entity(ABC):
         if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
-
-
-
-# Дописать метод move для базового класса существ.
-# Метод должен принимать елемент enum Direction и объект класса game.
-# Нужно сделать проверки что на целевой точке не стоит другое существо
-# (перебрать всех существ из игры) и проверить что она находится в допустимом диапазоне.
-# После этого если все ок, то сдвинуть существо и вернуть True,
-# иначе вывести на консоль сообщение об ошибке и вернуть False.
