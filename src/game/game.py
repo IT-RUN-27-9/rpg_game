@@ -10,7 +10,33 @@ class Game:
         self.player = Player(1, 1, self)
 
     def _move_player(self):
-        print("Вы")
+        print("""Выбериет направление:
+        1.Север
+        2.Юг
+        3.Восток
+        4.Запад
+        5.Северо-восток
+        6.Северо-запад
+        7.Юго-восток
+        8.Юго-запад""")
+        command = int(input())
+        if command == 1:
+            self.player.move(Direction.north)
+        elif command == 2:
+            self.player.move(Direction.south)
+        elif command == 3:
+            self.player.move(Direction.east)
+        elif command == 4:
+            self.player.move(Direction.west)
+        elif command == 5:
+            self.player.move(Direction.north_east)
+        elif command == 6:
+            self.player.move(Direction.north_west)
+        elif command == 7:
+            self.player.move(Direction.south_east)
+        elif command == 8:
+            self.player.move(Direction.south_west)
+
 
 
     def get_command(self):
