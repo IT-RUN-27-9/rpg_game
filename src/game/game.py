@@ -1,6 +1,6 @@
 from src.entities.Player import Player
 from src.entities.Rat import Rat
-from src.entities.base_entity import  Direction
+from src.entities.base_entity import Direction
 
 
 class Game:
@@ -10,7 +10,7 @@ class Game:
         self.player = Player(1, 1, self)
 
     def _move_player(self):
-        print("""Выбериет направление:
+        print("""Выберите направление:
         1.Север
         2.Юг
         3.Восток
@@ -36,7 +36,6 @@ class Game:
             self.player.move(Direction.south_east)
         elif command == 8:
             self.player.move(Direction.south_west)
-
 
 
     def get_command(self):
