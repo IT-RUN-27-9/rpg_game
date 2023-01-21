@@ -42,13 +42,13 @@ class Game:
         while True:
             print('Выберите действие')
             print('1. Ничего не делать')
-            print('2. Идти на север')
+            print('2. Сделать ход')
 
             command = int(input())
             if command == 1:
                 pass
             elif command == 2:
-                self.player.move(Direction.north)
+                self._move_player()
             else:
                 print('Неизвестная команда')
             return
