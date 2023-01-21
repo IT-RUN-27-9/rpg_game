@@ -21,4 +21,49 @@ class Entity(ABC):
         self.attack = attack
 
     def move(self, direction: Direction):
-        pass
+        new_x = None
+        new_y = None
+        if direction == Direction.east:
+            new_x = self.x_coord + 1
+        if direction == Direction.north:
+            new_y = self.y_coord + 1
+        if direction == Direction.west:
+            new_x = self.x_coord - 1
+        if direction == Direction.south:
+            new_y = self.y_coord - 1
+        if direction == Direction.north_west:
+            new_x = self.x_coord - 1
+            new_y = self.y_coord + 1
+        if direction == Direction.north_east:
+            new_x = self.x_coord + 1
+            new_y = self.y_coord + 1
+        if direction == Direction.south_east:
+            new_x = self.x_coord + 1
+            new_y = self.y_coord - 1
+        if direction == Direction.south_west:
+            new_x = self.x_coord - 1
+            new_y = self.y_coord - 1
+        if self._check(new_x, new_y):
+            self.x_coord = new_x
+            self.y_coord = new_y
+            return True
+        else:
+            print('move is invalid')
+            return False
+
+    def _check_borders(self, x_coord, y_coord):
+        if x_coord > 100 or x_coord < 1 or y_coord < 1 or y_coord > 100:
+            return False
+        return True
+
+    def _check_other_objects(self, x_coord, y_coord):
+        for monster in self.game.entities:
+            if monster.x_coord == x_coord and monster.y_coord == y_coord:
+                return False
+            return True
+
+    def _check(self, x_coord, y_coord):
+        if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
+            return True
+        return False
+
