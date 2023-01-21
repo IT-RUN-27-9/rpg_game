@@ -63,3 +63,4 @@ class Game:
         for monster in self.entities:
             if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
+
