@@ -14,23 +14,28 @@ class Direction(Enum):
 
 
 class Entity(ABC):
-    def __init__(self, x_coord, y_coord, hp, attack):
+    def __init__(self, x_coord, y_coord, hp, attack, game):
         self.x_coord = x_coord
         self.y_coord = y_coord
         self.hp = hp
         self.attack = attack
+        self.game = game
 
     def move(self, direction: Direction):
         new_x = None
         new_y = None
         if direction == Direction.east:
             new_x = self.x_coord + 1
+            new_y = self.y_coord
         if direction == Direction.north:
             new_y = self.y_coord + 1
+            new_x = self.x_coord
         if direction == Direction.west:
             new_x = self.x_coord - 1
+            new_y = self.y_coord
         if direction == Direction.south:
             new_y = self.y_coord - 1
+            new_x = self.x_coord
         if direction == Direction.north_west:
             new_x = self.x_coord - 1
             new_y = self.y_coord + 1
