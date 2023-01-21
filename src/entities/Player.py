@@ -5,8 +5,5 @@ from src.incantation.superheal import SuperHeal
 
 class Player(Mage):
     def __init__(self, x_coord, y_coord):
-        super().__init__(x_coord, y_coord)
-        self.hp = 100
-        self.attack = 10
-        self.mana = 50
+        super().__init__(x_coord, y_coord, 500, 50, 25)
         self.incantatoins = [SuperHeal, Fireball]
