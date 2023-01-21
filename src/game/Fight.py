@@ -1,4 +1,6 @@
-
+from abc import ABC
+from enum import Enum
+from Player import Player
 from Monster import Monster
 
 def fight(self, target, player):
