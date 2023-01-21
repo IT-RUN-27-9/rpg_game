@@ -2,6 +2,10 @@ from src.entities.Player import Player
 from src.entities.Rat import Rat
 from src.entities.base_entity import Direction
 
+def check_distance(monster, xcoord, ycoord):
+    if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
+        return True
+
 
 class Game:
     def __init__(self):
@@ -10,15 +14,15 @@ class Game:
         self.player = Player(1, 1, self)
 
     def _move_player(self):
-        print("""Выбериет направление:
-1.Север
-2.Юг
-3.Восток
-4.Запад
-5.Северо-восток
-6.Северо-запад
-7.Юго-восток
-8.Юго-запад""")
+        print("""Выберите направление:
+        1.Север
+        2.Юг
+        3.Восток
+        4.Запад
+        5.Северо-восток
+        6.Северо-запад
+        7.Юго-восток
+        8.Юго-запад""")
         command = int(input())
         if command == 1:
             self.player.move(Direction.north)
@@ -36,7 +40,6 @@ class Game:
             self.player.move(Direction.south_east)
         elif command == 8:
             self.player.move(Direction.south_west)
-
 
 
     def get_command(self):
@@ -57,3 +60,6 @@ class Game:
     def show_info(self):
         print('Ничего не происходит')
         print(f'Ваши координаты: {self.player.x_coord}, {self.player.y_coord}')
+        for monster in self.entities:
+            if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
+                print(f"рядом с вами находится {monster}")
