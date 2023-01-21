@@ -2,6 +2,10 @@ from src.entities.Player import Player
 from src.entities.Rat import Rat
 from src.entities.base_entity import Direction
 
+def check_distance(monster, xcoord, ycoord):
+    if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
+        return True
+
 
 class Game:
     def __init__(self):
@@ -56,3 +60,7 @@ class Game:
     def show_info(self):
         print('Ничего не происходит')
         print(f'Ваши координаты: {self.player.x_coord}, {self.player.y_coord}')
+        for monster in self.entities:
+            if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
+                print(f"рядом с вами находится {monster}")
+
