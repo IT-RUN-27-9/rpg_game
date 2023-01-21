@@ -1,6 +1,6 @@
 from src.entities.Player import Player
 from src.entities.Rat import Rat
-from src.entities.base_entity import  Direction
+from src.entities.base_entity import Direction
 
 
 class Game:
@@ -10,8 +10,7 @@ class Game:
         self.player = Player(1, 1, self)
 
     def _move_player(self):
-        print("Вы")
-
+        print("Выберите направление")
 
     def get_command(self):
         while True:
