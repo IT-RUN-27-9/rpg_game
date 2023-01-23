@@ -50,9 +50,12 @@ class Game:
 
             command = int(input())
             if command == 1:
-                pass
+                for monster in self.entities:
+                    monster.action()
             elif command == 2:
                 self._move_player()
+                for monster in self.entities:
+                    monster.action()
             else:
                 print('Неизвестная команда')
             return
@@ -63,4 +66,3 @@ class Game:
         for monster in self.entities:
             if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
-
