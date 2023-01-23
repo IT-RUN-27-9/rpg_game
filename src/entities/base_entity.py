@@ -1,5 +1,7 @@
 from abc import ABC
 from enum import Enum
+from Player import Player
+from src.fight.fight_realization import fight
 
 
 class Direction(Enum):
@@ -71,4 +73,10 @@ class Entity(ABC):
         if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
+
+    def _check_nearby(self, x_coord, y_coord):
+        for monster in self.game.entities:
+            if monster.x_coord+1 == x_coord or monster.y_coord+1 == y_coord:
+                fight(monster, Player)
+            return False
 
