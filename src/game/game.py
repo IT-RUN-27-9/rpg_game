@@ -1,6 +1,9 @@
 from src.entities.Player import Player
 from src.entities.Rat import Rat
 from src.entities.base_entity import Direction
+from src.entities.base_entity import Entity
+import random
+from random import randint
 
 def check_distance(monster, xcoord, ycoord):
     if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
@@ -12,6 +15,14 @@ class Game:
         self.entities = [Rat(5, 5, self), Rat(6, 6, self)]
         self.is_ended = False
         self.player = Player(1, 1, self)
+
+    def randomly_move_monsters(self):
+        for monster in self.entities:
+            new_x = monster.x_coord + randint(-1, 1)
+            new_y = monster.y_coord + randint(-1, 1)
+            if monster._check(new_x, new_y):
+                monster.x_coord = new_x
+                monster.y_coord = new_y
 
     def _move_player(self):
         print("""Выберите направление:
@@ -53,6 +64,7 @@ class Game:
                 pass
             elif command == 2:
                 self._move_player()
+                self.randomly_move_monsters()
             else:
                 print('Неизвестная команда')
             return
