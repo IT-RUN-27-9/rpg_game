@@ -15,6 +15,12 @@ class Direction(Enum):
     south_east = 8
 
 
+def _check_borders(x_coord, y_coord):
+    if x_coord > 100 or x_coord < 1 or y_coord < 1 or y_coord > 100:
+        return False
+    return True
+
+
 class Entity(ABC):
     def __init__(self, x_coord, y_coord, hp, attack, game):
         self.x_coord = x_coord
@@ -58,11 +64,6 @@ class Entity(ABC):
             print('move is invalid')
             return False
 
-    def _check_borders(self, x_coord, y_coord):
-        if x_coord > 100 or x_coord < 1 or y_coord < 1 or y_coord > 100:
-            return False
-        return True
-
     def _check_other_objects(self, x_coord, y_coord):
         for monster in self.game.entities:
             if monster.x_coord == x_coord and monster.y_coord == y_coord:
@@ -70,13 +71,12 @@ class Entity(ABC):
             return True
 
     def _check(self, x_coord, y_coord):
-        if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
+        if _check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
 
     def _check_nearby(self, x_coord, y_coord):
         for monster in self.game.entities:
-            if monster.x_coord+1 == x_coord or monster.y_coord+1 == y_coord:
+            if abs(monster.x_coord - x_coord) < 2 or abs(monster.y_coord - y_coord) < 2:
                 fight(monster, Player)
             return False
-

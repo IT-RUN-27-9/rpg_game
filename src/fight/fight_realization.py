@@ -2,6 +2,7 @@ from src.incantation.superheal import SuperHeal
 from src.incantation.fireball import Fireball
 import random
 
+
 def fight(target, player):
     print(f'На вас напал монстр {target.name}')
     while target.hp <= 0 or player.hp <= 0:
@@ -37,4 +38,3 @@ def fight(target, player):
             print(f'Вас атаковал противник {target.name}')
         else:
             print(f'Противник {target.name} промахнулся')
-
