@@ -71,4 +71,3 @@ class Entity(ABC):
         if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
-
