@@ -1,5 +1,11 @@
+import random
+
+from src.entities.FileGolem import FireGolem
+from src.entities.Mage import Mage
+from src.entities.Monster import Monster
 from src.entities.Player import Player
 from src.entities.Rat import Rat
+from src.entities.Vampire import Vampire
 from src.entities.base_entity import Direction
 
 def check_distance(monster, xcoord, ycoord):
@@ -9,9 +15,16 @@ def check_distance(monster, xcoord, ycoord):
 
 class Game:
     def __init__(self):
-        self.entities = [Rat(5, 5, self), Rat(6, 6, self)]
+        self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Monster(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, game=self),
+                         FireGolem(random.randint(1, 100), random.randint(1, 100), self),
+                         Mage(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, mana=5, game=self),
+                         Vampire(random.randint(1, 100), random.randint(1, 100), self),
+                         ]
         self.is_ended = False
-        self.player = Player(1, 1, self)
+        self.player = Player(random.randint(1, 100), random.randint(1, 100), self)
 
     def _move_player(self):
         print("""Выберите направление:
