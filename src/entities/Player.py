@@ -1,9 +1,9 @@
-from src.entities.base_entity import Entity
+from src.entities.Mage import Mage
 from src.incantation.fireball import Fireball
 from src.incantation.superheal import SuperHeal
 
 
-class Player(Entity):
+class Player(Mage):
 
     def __init__(self, x_coord, y_coord, game):
         self.x_coord = x_coord

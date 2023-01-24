@@ -1,8 +1,8 @@
-from src.entities.Monster import Monster
+from src.entities.base_entity import Entity
 from src.incantation.heal import Heal
 
 
-class Mage(Monster):
+class Mage(Entity):
     def __init__(self, x_coord, y_coord, hp, attack, mana, game):
         super().__init__(x_coord, y_coord, hp, attack, game)
         self.mana = mana

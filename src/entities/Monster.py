@@ -21,21 +21,6 @@ class Monster(Entity):
         if self._in_battle():
             pass
         else:
-            command = random.randint(1, 8)
-            if command == 1:
-                self.move(Direction.north)
-            elif command == 2:
-                self.move(Direction.south)
-            elif command == 3:
-                self.move(Direction.east)
-            elif command == 4:
-                self.move(Direction.west)
-            elif command == 5:
-                self.move(Direction.north_east)
-            elif command == 6:
-                self.move(Direction.north_west)
-            elif command == 7:
-                self.move(Direction.south_east)
-            elif command == 8:
-                self.move(Direction.south_west)
+            direction = random.randint(1, 8)
+            self.move(Direction(direction))
             print(f'коордитаны монстра: {self.get_coords()}')

@@ -1,7 +1,6 @@
 import random
 
 from src.entities.FileGolem import FireGolem
-from src.entities.Mage import Mage
 from src.entities.Monster import Monster
 from src.entities.Player import Player
 from src.entities.Rat import Rat
@@ -12,6 +11,16 @@ def check_distance(monster, xcoord, ycoord):
     if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
         return True
 
+all_coords = []
+set_all_coords = set()
+
+def check_identical_coordinates(monsters):
+    for monster in monsters:
+        all_coords.append((monster.x_coord, monster.y_coord))
+        set_all_coords.add((monster.x_coord, monster.y_coord))
+    if len(all_coords) == len(list(set_all_coords)):
+        return True
+
 
 class Game:
     def __init__(self):
@@ -20,9 +29,18 @@ class Game:
                          Rat(random.randint(1, 100), random.randint(1, 100), self),
                          Monster(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, game=self),
                          FireGolem(random.randint(1, 100), random.randint(1, 100), self),
-                         Mage(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, mana=5, game=self),
                          Vampire(random.randint(1, 100), random.randint(1, 100), self),
                          ]
+
+        while check_identical_coordinates(self.entities) == False:
+            self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Monster(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, game=self),
+                             FireGolem(random.randint(1, 100), random.randint(1, 100), self),
+                             Vampire(random.randint(1, 100), random.randint(1, 100), self),
+                             ]
+
         self.is_ended = False
         self.player = Player(random.randint(1, 100), random.randint(1, 100), self)
 
