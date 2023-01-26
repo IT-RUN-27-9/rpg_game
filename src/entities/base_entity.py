@@ -14,12 +14,13 @@ class Direction(Enum):
 
 
 class Entity(ABC):
-    def __init__(self, x_coord, y_coord, hp, attack, game):
+    def __init__(self, x_coord: int, y_coord: int, hp: int, attack: int, game):
         self.x_coord = x_coord
         self.y_coord = y_coord
         self.hp = hp
         self.attack = attack
         self.game = game
+        self.target = None
 
     def move(self, direction: Direction):
         new_x = None
@@ -56,7 +57,8 @@ class Entity(ABC):
             print('move is invalid')
             return False
 
-    def _check_borders(self, x_coord, y_coord):
+    @staticmethod
+    def _check_borders(x_coord, y_coord):
         if x_coord > 100 or x_coord < 1 or y_coord < 1 or y_coord > 100:
             return False
         return True
@@ -72,3 +74,5 @@ class Entity(ABC):
             return True
         return False
 
+    def set_target(self, target):
+        self.target = target

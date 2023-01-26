@@ -1,17 +1,52 @@
+import random
+
+from src.entities.FileGolem import FireGolem
+from src.entities.Monster import Monster
 from src.entities.Player import Player
 from src.entities.Rat import Rat
+from src.entities.Vampire import Vampire
 from src.entities.base_entity import Direction
+from src.game.enums.commands import Commands
+
 
 def check_distance(monster, xcoord, ycoord):
-    if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
+    if ((monster.x_coord - xcoord) ** 2 + (monster.y_coord - ycoord) ** 2) ** 0.5 <= 2:
+        return True
+
+
+all_coords = []
+set_all_coords = set()
+
+
+def check_identical_coordinates(monsters):
+    for monster in monsters:
+        all_coords.append((monster.x_coord, monster.y_coord))
+        set_all_coords.add((monster.x_coord, monster.y_coord))
+    if len(all_coords) == len(list(set_all_coords)):
         return True
 
 
 class Game:
     def __init__(self):
-        self.entities = [Rat(5, 5, self), Rat(6, 6, self)]
+        self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Rat(random.randint(1, 100), random.randint(1, 100), self),
+                         Monster(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, game=self),
+                         FireGolem(random.randint(1, 100), random.randint(1, 100), self),
+                         Vampire(random.randint(1, 100), random.randint(1, 100), self),
+                         ]
+
+        while not check_identical_coordinates(self.entities):
+            self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Rat(random.randint(1, 100), random.randint(1, 100), self),
+                             Monster(random.randint(1, 100), random.randint(1, 100), hp=10, attack=1, game=self),
+                             FireGolem(random.randint(1, 100), random.randint(1, 100), self),
+                             Vampire(random.randint(1, 100), random.randint(1, 100), self),
+                             ]
+
         self.is_ended = False
-        self.player = Player(1, 1, self)
+        self.player = Player(random.randint(1, 100), random.randint(1, 100), self)
 
     def _move_player(self):
         print("""Выберите направление:
@@ -41,12 +76,17 @@ class Game:
         elif command == 8:
             self.player.move(Direction.south_west)
 
-
     def get_command(self):
         while True:
+            i = 1
+            allowed_action = self.get_allowed_actions()
+            for command in allowed_action:
+                print(f"{i}. {command}")
+                i += 1
             print('Выберите действие')
             print('1. Ничего не делать')
             print('2. Сделать ход')
+            print('3. Выбрать цель')
 
             command = int(input())
             if command == 1:
@@ -61,6 +101,17 @@ class Game:
         print('Ничего не происходит')
         print(f'Ваши координаты: {self.player.x_coord}, {self.player.y_coord}')
         for monster in self.entities:
-            if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
+            if check_distance(monster, xcoord=self.player.x_coord, ycoord=self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
 
+
+    def monster_actions(self):
+        for monster in self.entities:
+            monster.action()
+
+    def get_allowed_actions(self):
+        answer = []
+        if self.player.in_battle:
+            answer.append(Commands.hit)
+        else:
+            answer.append(Commands.move)
