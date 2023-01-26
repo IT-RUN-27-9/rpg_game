@@ -35,7 +35,7 @@ class Game:
                          Vampire(random.randint(1, 100), random.randint(1, 100), self),
                          ]
 
-        while check_identical_coordinates(self.entities) == False:
+        while not check_identical_coordinates(self.entities):
             self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
                              Rat(random.randint(1, 100), random.randint(1, 100), self),
                              Rat(random.randint(1, 100), random.randint(1, 100), self),
