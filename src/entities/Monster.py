@@ -23,4 +23,4 @@ class Monster(Entity):
         else:
             direction = random.randint(1, 8)
             self.move(Direction(direction))
-            print(f'коордитаны монстра: {self.get_coords()}')
+            print(f'координаты монстра: {self.get_coords()}')
