@@ -9,6 +9,7 @@ from src.entities.base_entity import Direction
 from src.game.enums.commands import Commands
 
 
+
 def check_distance(monster, xcoord, ycoord):
     if ((monster.x_coord - xcoord) ** 2 + (monster.y_coord - ycoord) ** 2) ** 0.5 <= 2:
         return True

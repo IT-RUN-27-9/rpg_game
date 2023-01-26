@@ -10,4 +10,3 @@ class Mage(Entity):
 
     def do_magic(self, target):
         target.hp -= self.incantations
-

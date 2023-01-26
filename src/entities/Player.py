@@ -19,3 +19,6 @@ class Player(Mage):
         if target is None:
             print("Выберите цель")
         self.incantations[command - 1].cast(target)
+
+    def hit(self, target):
+        target.hp -= self.attack
