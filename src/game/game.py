@@ -47,6 +47,7 @@ class Game:
 
         self.is_ended = False
         self.player = Player(random.randint(1, 100), random.randint(1, 100), self)
+        self.in_battle = False
 
     def _move_player(self):
         print("""Выберите направление:
@@ -83,19 +84,14 @@ class Game:
             for command in allowed_action:
                 print(f"{i}. {command}")
                 i += 1
-            print('Выберите действие')
-            print('1. Ничего не делать')
-            print('2. Сделать ход')
-            print('3. Выбрать цель')
-
             command = int(input())
-            if command == 1:
+            action = allowed_action[command - 1]
+            if action == Commands.move:
+                return self._move_player(self)
+            elif action == Commands.hit:
+                return self.player.do_magic(self, self.player.target)
+            elif action == Commands.nothing:
                 pass
-            elif command == 2:
-                self._move_player()
-            else:
-                print('Неизвестная команда')
-            return
 
     def show_info(self):
         print('Ничего не происходит')
@@ -103,6 +99,7 @@ class Game:
         for monster in self.entities:
             if check_distance(monster, xcoord=self.player.x_coord, ycoord=self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
+                self.in_battle = True
 
 
     def monster_actions(self):
@@ -111,7 +108,9 @@ class Game:
 
     def get_allowed_actions(self):
         answer = []
-        if self.player.in_battle:
+        answer.append(Commands.nothing)
+        if self.in_battle:
             answer.append(Commands.hit)
         else:
             answer.append(Commands.move)
+        return answer
