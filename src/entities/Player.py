@@ -14,6 +14,8 @@ class Player(Mage):
         print('Выберите заклинание')
         for incantation in self.incantations:
             i += 1
-            print(f'{1}. {incantation}')
+            print(f'{i}. {incantation}')
         command = int(input())
+        if target is None:
+            print("Выберите цель")
         self.incantations[command - 1].cast(target)

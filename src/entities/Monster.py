@@ -6,7 +6,7 @@ from src.entities.base_entity import Entity, Direction
 class Monster(Entity):
     def __init__(self, x_coord: int, y_coord: int, hp: int, attack: int, game):
         super().__init__(x_coord, y_coord, hp, attack, game)
-        self.is_agro = True
+        self.in_battle = False
 
     def hit(self, target):
         target.hp -= self.attack
@@ -18,7 +18,7 @@ class Monster(Entity):
         return False
 
     def action(self):
-        if self._in_battle():
+        if self.in_battle:
             pass
         else:
             direction = random.randint(1, 8)

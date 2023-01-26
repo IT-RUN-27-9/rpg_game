@@ -6,6 +6,7 @@ from src.entities.Player import Player
 from src.entities.Rat import Rat
 from src.entities.Vampire import Vampire
 from src.entities.base_entity import Direction
+from src.game.enums.commands import Commands
 
 
 def check_distance(monster, xcoord, ycoord):
@@ -77,9 +78,15 @@ class Game:
 
     def get_command(self):
         while True:
+            i = 1
+            allowed_action = self.get_allowed_actions()
+            for command in allowed_action:
+                print(f"{i}. {command}")
+                i += 1
             print('Выберите действие')
             print('1. Ничего не делать')
             print('2. Сделать ход')
+            print('3. Выбрать цель')
 
             command = int(input())
             if command == 1:
@@ -97,6 +104,14 @@ class Game:
             if check_distance(monster, xcoord=self.player.x_coord, ycoord=self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
 
+
     def monster_actions(self):
         for monster in self.entities:
             monster.action()
+
+    def get_allowed_actions(self):
+        answer = []
+        if self.player.in_battle:
+            answer.append(Commands.hit)
+        else:
+            answer.append(Commands.move)

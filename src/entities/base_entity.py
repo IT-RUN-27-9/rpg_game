@@ -20,6 +20,7 @@ class Entity(ABC):
         self.hp = hp
         self.attack = attack
         self.game = game
+        self.target = None
 
     def move(self, direction: Direction):
         new_x = None
@@ -72,3 +73,6 @@ class Entity(ABC):
         if self._check_borders(x_coord, y_coord) and self._check_other_objects(x_coord, y_coord):
             return True
         return False
+
+    def set_target(self, target):
+        self.target = target
