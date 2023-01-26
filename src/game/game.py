@@ -7,12 +7,15 @@ from src.entities.Rat import Rat
 from src.entities.Vampire import Vampire
 from src.entities.base_entity import Direction
 
+
 def check_distance(monster, xcoord, ycoord):
-    if ((monster.x_coord - xcoord)**2 + (monster.y_coord - ycoord)**2)**0.5 <= 2:
+    if ((monster.x_coord - xcoord) ** 2 + (monster.y_coord - ycoord) ** 2) ** 0.5 <= 2:
         return True
+
 
 all_coords = []
 set_all_coords = set()
+
 
 def check_identical_coordinates(monsters):
     for monster in monsters:
@@ -32,7 +35,7 @@ class Game:
                          Vampire(random.randint(1, 100), random.randint(1, 100), self),
                          ]
 
-        while check_identical_coordinates(self.entities) == False:
+        while not check_identical_coordinates(self.entities):
             self.entities = [Rat(random.randint(1, 100), random.randint(1, 100), self),
                              Rat(random.randint(1, 100), random.randint(1, 100), self),
                              Rat(random.randint(1, 100), random.randint(1, 100), self),
@@ -72,7 +75,6 @@ class Game:
         elif command == 8:
             self.player.move(Direction.south_west)
 
-
     def get_command(self):
         while True:
             print('Выберите действие')
@@ -92,7 +94,7 @@ class Game:
         print('Ничего не происходит')
         print(f'Ваши координаты: {self.player.x_coord}, {self.player.y_coord}')
         for monster in self.entities:
-            if check_distance(monster, xcoord = self.player.x_coord, ycoord = self.player.y_coord):
+            if check_distance(monster, xcoord=self.player.x_coord, ycoord=self.player.y_coord):
                 print(f"рядом с вами находится {monster}")
 
     def monster_actions(self):
