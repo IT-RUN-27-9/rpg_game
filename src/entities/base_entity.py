@@ -56,7 +56,8 @@ class Entity(ABC):
             print('move is invalid')
             return False
 
-    def _check_borders(self, x_coord, y_coord):
+    @staticmethod
+    def _check_borders(x_coord, y_coord):
         if x_coord > 100 or x_coord < 1 or y_coord < 1 or y_coord > 100:
             return False
         return True
