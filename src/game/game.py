@@ -95,7 +95,7 @@ class Game:
 
     def show_info(self):
         if self.in_battle:
-            print(f'Вы дерётесь с {self.player.target}')
+            print(f'Вы дерётесь с {self.player.target} ')
             print(f'Ваше здоровье: {self.player.hp}')
             print(f'Ваша мана: {self.player.mana}')
             print(f'Здоровье {self.player.target}: {self.player.target.hp}')
