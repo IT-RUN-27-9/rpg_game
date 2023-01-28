@@ -87,9 +87,9 @@ class Game:
             command = int(input())
             action = allowed_action[command - 1]
             if action == Commands.move:
-                return self._move_player(self)
+                return self._move_player()
             elif action == Commands.hit:
-                return self.player.do_magic(self, self.player.target)
+                return self.player.do_magic(self.player.target)
             elif action == Commands.nothing:
                 pass
 
