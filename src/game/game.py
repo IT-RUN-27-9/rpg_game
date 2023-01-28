@@ -91,8 +91,9 @@ class Game:
             elif action == Commands.hit:
                 return self.player.do_magic(self.player.target)
             elif action == Commands.nothing:
+                return
+            else:
                 pass
-
     def show_info(self):
         if self.player.in_battle:
             pass
