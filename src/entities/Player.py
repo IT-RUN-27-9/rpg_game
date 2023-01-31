@@ -18,5 +18,6 @@ class Player(Mage):
         command = int(input())
         if target is None:
             print("Выберите цель")
-        self.incantations[command - 1].cast(target)
-
+        incantation = self.incantations[command - 1]
+        incantation.cast(target)
+        self.mana -= incantation.mana

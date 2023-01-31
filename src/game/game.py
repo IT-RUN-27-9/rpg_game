@@ -94,7 +94,10 @@ class Game:
             if action == Commands.move:
                 return self._move_player()
             elif action == Commands.hit:
+                return self.player.hit(self.player.target)
+            elif action == Commands.do_magic:
                 return self.player.do_magic(self.player.target)
+
             elif action == Commands.nothing:
                 return
             else:
@@ -127,6 +130,8 @@ class Game:
         answer = [Commands.nothing]
         if self.in_battle:
             answer.append(Commands.hit)
+            if self.player.mana >= 0:
+                answer.append(Commands.do_magic)
         else:
             answer.append(Commands.move)
         return answer
