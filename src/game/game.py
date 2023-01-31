@@ -1,6 +1,6 @@
 import random
 
-from src.entities.FileGolem import FireGolem
+from src.entities.FireGolem import FireGolem
 from src.entities.Monster import Monster
 from src.entities.Player import Player
 from src.entities.Rat import Rat
@@ -87,6 +87,10 @@ class Game:
                 i += 1
             command = int(input())
             action = allowed_action[command - 1]
+            if self.player.hp <= 0:
+                self.is_ended = True
+                print('Вы проиграли!')
+                break
             if action == Commands.move:
                 return self._move_player()
             elif action == Commands.hit:
