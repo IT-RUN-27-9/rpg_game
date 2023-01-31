@@ -108,10 +108,7 @@ class Game:
 
     def monster_actions(self):
         for monster in self.entities:
-            if monster.incantations is not None:
-                monster.action_mage()
-            else:
-                monster.action_hit()
+            monster.action()
 
     def get_allowed_actions(self):
         answer = []

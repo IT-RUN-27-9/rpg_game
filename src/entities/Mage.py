@@ -15,7 +15,7 @@ class Mage(Entity):
     def get_coords(self):
         return self.x_coord, self.y_coord
 
-    def action_mage(self):
+    def action(self):
         if self.in_battle:
             miss_chance_25 = random.randint(1, 4)
             if miss_chance_25 != 4:

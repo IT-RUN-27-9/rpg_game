@@ -1,4 +1,6 @@
 import random
+
+from src.entities.Mage import Mage
 from src.entities.base_entity import Entity, Direction
 
 
@@ -13,7 +15,7 @@ class Monster(Entity):
     def get_coords(self):
         return self.x_coord, self.y_coord
 
-    def action_hit(self):
+    def action(self):
         if self.in_battle:
             self.hit(self.target)
         else:

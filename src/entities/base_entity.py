@@ -83,3 +83,7 @@ class Entity(ABC):
 
     def set_target(self, target):
         self.target = target
+
+    def hit(self, target):
+        target.hp -= self.attack
+
