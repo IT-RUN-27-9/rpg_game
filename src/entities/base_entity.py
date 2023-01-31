@@ -21,6 +21,7 @@ class Entity(ABC):
         self.attack = attack
         self.game = game
         self.target = None
+        self.in_battle = False
 
     def move(self, direction: Direction):
         new_x = None

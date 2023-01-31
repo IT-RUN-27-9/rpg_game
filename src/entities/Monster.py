@@ -14,9 +14,6 @@ class Monster(Entity):
     def get_coords(self):
         return self.x_coord, self.y_coord
 
-    def _in_battle(self):
-        return False
-
     def action(self):
         if self.in_battle:
             pass
