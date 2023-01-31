@@ -19,3 +19,4 @@ class Player(Mage):
         if target is None:
             print("Выберите цель")
         self.incantations[command - 1].cast(target)
+

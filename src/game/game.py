@@ -94,6 +94,7 @@ class Game:
                 return
             else:
                 pass
+
     def show_info(self):
         if self.in_battle:
             print(f'Вы дерётесь с {self.player.target} ')
@@ -110,7 +111,6 @@ class Game:
                     self.player.target = monster
                     print(f"рядом с вами находится {monster}")
                     self.in_battle = True
-
 
     def monster_actions(self):
         for monster in self.entities:

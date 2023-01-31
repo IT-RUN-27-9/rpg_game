@@ -1,5 +1,6 @@
-from src.entities.base_entity import Entity
+from src.entities.base_entity import Entity, Direction
 from src.incantation.heal import Heal
+import random
 
 
 class Mage(Entity):
@@ -11,3 +12,12 @@ class Mage(Entity):
     def do_magic(self, target):
         target.hp -= self.incantations
 
+    def action(self):
+        if self.in_battle:
+            miss_chance_25 = random.randint(1, 4)
+            if miss_chance_25 != 4:
+                self.do_magic(self.target)
+        else:
+            direction = random.randint(1, 8)
+            self.move(Direction(direction))
+            print(f'координаты монстра: {self.get_coords()}')
