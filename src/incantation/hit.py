@@ -1,9 +1,9 @@
 from src.incantation.incantation import Incantation
 
 
-class Fireball(Incantation):
+class Hit(Incantation):
     def __str__(self):
-        return 'Огненный шар'
+        return 'Ударить'
 
     def cast(self, target):
         target.hp -= 10
