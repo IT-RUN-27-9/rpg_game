@@ -9,7 +9,6 @@ from src.entities.base_entity import Direction
 from src.game.enums.commands import Commands
 
 
-
 def check_distance(monster, xcoord, ycoord):
     if ((monster.x_coord - xcoord) ** 2 + (monster.y_coord - ycoord) ** 2) ** 0.5 <= 2:
         return True
@@ -95,6 +94,7 @@ class Game:
                 return
             else:
                 pass
+
     def show_info(self):
         if self.player.in_battle:
             pass
@@ -106,10 +106,12 @@ class Game:
                     print(f"рядом с вами находится {monster}")
                     self.in_battle = True
 
-
     def monster_actions(self):
         for monster in self.entities:
-            monster.action()
+            if monster.incantations is not None:
+                monster.action_mage()
+            else:
+                monster.action_hit()
 
     def get_allowed_actions(self):
         answer = []

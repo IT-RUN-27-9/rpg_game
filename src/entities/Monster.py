@@ -1,5 +1,4 @@
 import random
-
 from src.entities.base_entity import Entity, Direction
 
 
@@ -14,9 +13,9 @@ class Monster(Entity):
     def get_coords(self):
         return self.x_coord, self.y_coord
 
-    def action(self):
+    def action_hit(self):
         if self.in_battle:
-            pass
+            self.hit(self.target)
         else:
             direction = random.randint(1, 8)
             self.move(Direction(direction))
