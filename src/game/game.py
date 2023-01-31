@@ -95,13 +95,19 @@ class Game:
             else:
                 pass
     def show_info(self):
-        if self.player.in_battle:
-            pass
+        if self.in_battle:
+            print(f'Вы дерётесь с {self.player.target} ')
+            print(f'Ваше здоровье: {self.player.hp}')
+            print(f'Ваша мана: {self.player.mana}')
+            print(f'Здоровье {self.player.target}: {self.player.target.hp}')
+            print(f'Мана {self.player.target}: {self.player.target.mana}')
+
         else:
             print('Ничего не происходит')
             print(f'Ваши координаты: {self.player.x_coord}, {self.player.y_coord}')
             for monster in self.entities:
                 if check_distance(monster, xcoord=self.player.x_coord, ycoord=self.player.y_coord):
+                    self.player.target = monster
                     print(f"рядом с вами находится {monster}")
                     self.in_battle = True
 
