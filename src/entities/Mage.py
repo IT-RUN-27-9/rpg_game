@@ -1,5 +1,4 @@
-from src.entities.base_entity import Entity, Direction
-from src.incantation.heal import Heal
+from src.entities.base_entity import Entity
 import random
 
 

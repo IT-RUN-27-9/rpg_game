@@ -51,6 +51,7 @@ class Game:
         self.in_battle = False
 
     def _move_player(self):
+        #test
         print("""Выберите направление:
         1.Север
         2.Юг
@@ -86,6 +87,9 @@ class Game:
                 print(f"{i}. {command}")
                 i += 1
             command = int(input())
+            if command >= len(allowed_action):
+                print("Некорректное действие, сделайте ход снова")
+                continue
             action = allowed_action[command - 1]
             if self.player.hp <= 0:
                 self.is_ended = True
@@ -98,7 +102,7 @@ class Game:
             elif action == Commands.nothing:
                 return
             else:
-                pass
+                print("Неизвестная команда")
 
     def show_info(self):
         if self.in_battle:
