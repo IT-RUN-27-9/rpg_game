@@ -51,7 +51,6 @@ class Game:
         self.in_battle = False
 
     def _move_player(self):
-        #test
         print("""Выберите направление:
         1.Север
         2.Юг
