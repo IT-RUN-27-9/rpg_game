@@ -1,6 +1,5 @@
 from src.entities.Mage import Mage
 from src.incantation.fireball import Fireball
-from src.incantation.hit import Hit
 from src.incantation.superheal import SuperHeal
 
 
@@ -19,8 +18,6 @@ class Player(Mage):
         command = int(input())
         if target is None:
             print("Выберите цель")
-        self.incantations[command - 1].cast(target)
-        self.mana -= 15
-        if self.mana <= 0:
-            self.incantations = [Hit()]
-            print('ваша мана закончилась')
+        incantation = self.incantations[command - 1]
+        incantation.cast(target)
+        self.mana -= incantation.mana

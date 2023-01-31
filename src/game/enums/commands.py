@@ -5,3 +5,4 @@ class Commands(str, Enum):
     nothing = "Ничего не делать"
     move = "Сделать ход"
     hit = "Ударить текущую цель"
+    do_magic = "Колдовать"
