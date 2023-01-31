@@ -47,6 +47,7 @@ class Game:
 
         self.is_ended = False
         self.player = Player(random.randint(1, 100), random.randint(1, 100), self)
+        self.entities.append(Vampire(self.player.x_coord + 3, self.player.y_coord+3, self))
         self.in_battle = False
 
     def _move_player(self):
@@ -111,14 +112,15 @@ class Game:
                     self.player.target = monster
                     print(f"рядом с вами находится {monster}")
                     self.in_battle = True
+                    monster.in_battle = True
+                    monster.target = self.player
 
     def monster_actions(self):
         for monster in self.entities:
             monster.action()
 
     def get_allowed_actions(self):
-        answer = []
-        answer.append(Commands.nothing)
+        answer = [Commands.nothing]
         if self.in_battle:
             answer.append(Commands.hit)
         else:
