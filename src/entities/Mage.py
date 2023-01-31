@@ -12,9 +12,6 @@ class Mage(Entity):
     def do_magic(self, target):
         target.hp -= self.incantations
 
-    def get_coords(self):
-        return self.x_coord, self.y_coord
-
     def action(self):
         if self.in_battle:
             miss_chance_25 = random.randint(1, 4)

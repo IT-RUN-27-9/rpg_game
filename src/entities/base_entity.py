@@ -87,3 +87,5 @@ class Entity(ABC):
     def hit(self, target):
         target.hp -= self.attack
 
+    def get_coords(self):
+        return self.x_coord, self.y_coord
