@@ -20,7 +20,7 @@ def _check_borders(x_coord, y_coord):
 
 
 class Entity(ABC):
-    def __init__(self, x_coord, y_coord, hp, attack, game, mana):
+    def __init__(self, x_coord, y_coord, hp, attack, game):
         self.x_coord = x_coord
         self.y_coord = y_coord
         self.hp = hp
@@ -28,7 +28,6 @@ class Entity(ABC):
         self.game = game
         self.target = None
         self.in_battle = False
-        self.mana = mana
 
     def move(self, direction: Direction):
         new_x = None

@@ -2,11 +2,6 @@ import random
 
 from src.entities.Mage import Mage
 from src.entities.base_entity import Entity, Direction
-from src.incantation.incantation import Incantation
-from src.incantation.fireball import Fireball
-from src.incantation.manaburn import Manaburn
-from src.incantation.superheal import SuperHeal
-from src.incantation.heal import Heal
 
 
 class Monster(Entity):
