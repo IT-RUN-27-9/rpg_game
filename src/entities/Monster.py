@@ -6,7 +6,7 @@ from src.entities.base_entity import Entity, Direction
 
 class Monster(Entity):
     def __init__(self, x_coord: int, y_coord: int, hp: int, attack: int, game):
-        super().__init__(x_coord, y_coord, hp, attack, game)
+        super().__init__(x_coord, y_coord, hp, attack, game, 100)
         self.in_battle = False
 
     def hit(self, target):
@@ -16,7 +16,15 @@ class Monster(Entity):
         return self.x_coord, self.y_coord
 
     def action_in_battle(self):
-        self.hit(self.target)
+        if isinstance(self, Mage):
+            inc = random.choice(self.incantations)
+            inc.cast(self.target)
+            self.mana -= inc.mana
+            if self.mana < 0:
+                self.hit(self.target)
+        else:
+            self.hit(self.target)
+
 
     def action(self):
         if self.hp <= 0:
