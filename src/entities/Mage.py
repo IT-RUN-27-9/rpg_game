@@ -11,7 +11,3 @@ class Mage(Entity):
     def do_magic(self, target):
         self.incantations[0].cast(target)
 
-    def action_in_battle(self):
-        miss_chance_25 = random.randint(1, 4)
-        if miss_chance_25 != 4:
-            self.do_magic(self.target)

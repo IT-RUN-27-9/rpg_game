@@ -86,7 +86,7 @@ class Game:
                 print(f"{i}. {command}")
                 i += 1
             command = int(input())
-            if command >= len(allowed_action):
+            if command > len(allowed_action):
                 print("Некорректное действие, сделайте ход снова")
                 continue
             action = allowed_action[command - 1]

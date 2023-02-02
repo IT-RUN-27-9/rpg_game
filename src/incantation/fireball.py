@@ -8,4 +8,4 @@ class Fireball(Incantation):
         return 'Огненный шар'
 
     def cast(self, target):
-        target.hp -= 10
+        target.hp -= 15
