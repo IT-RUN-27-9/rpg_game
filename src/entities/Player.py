@@ -19,5 +19,10 @@ class Player(Mage):
         if target is None:
             print("Выберите цель")
         incantation = self.incantations[command - 1]
-        incantation.cast(target)
+        if incantation.allow_target_monster:
+            incantation.cast(target)
+        elif incantation.allow_target_self:
+            incantation.cast(self)
+        else:
+            print("Это заклинание нельзя применить в бою")
         self.mana -= incantation.mana
